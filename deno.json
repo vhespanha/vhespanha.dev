@@ -1,0 +1,33 @@
+{
+  "$schema": "https://raw.githubusercontent.com/denoland/deno/refs/heads/main/cli/schemas/config-file.v1.json",
+  "nodeModulesDir": "manual",
+  "imports": {
+    "@/": "./",
+    "@deno/vite-plugin": "npm:@deno/vite-plugin@^2.0.2",
+    "@fontsource-variable/geist": "npm:@fontsource-variable/geist@^5.2.9",
+    "@fontsource-variable/geist-mono": "npm:@fontsource-variable/geist-mono@^5.2.8",
+    "@hono/vite-build": "npm:@hono/vite-build@^1.11.1",
+    "@hono/vite-dev-server": "npm:@hono/vite-dev-server@^0.26.0",
+    "@tailwindcss/vite": "npm:@tailwindcss/vite@^4.3.0",
+    "basecoat-css": "npm:basecoat-css@^0.3.11",
+    "clsx": "npm:clsx@^2.1.1",
+    "hono": "npm:hono@^4.12.23",
+    "htmx.org": "npm:htmx.org@4.0.0-beta4",
+    "lucide": "npm:lucide@^1.17.0",
+    "tailwind-merge": "npm:tailwind-merge@^3.6.0",
+    "tailwindcss": "npm:tailwindcss@^4.3.0",
+    "vite": "npm:vite@^8.0.16"
+  },
+  "tasks": {
+    "start": "vite",
+    "build": "vite build --mode client"
+  },
+  "compilerOptions": {
+    "jsx": "precompile",
+    "jsxImportSource": "hono/jsx",
+    "types": ["./global.d.ts", "vite/client"]
+  },
+  "lint": {
+    "rules": { "tags": ["jsx", "workspace"] }
+  }
+}
