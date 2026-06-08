@@ -1,5 +1,6 @@
 import { PropsWithChildren } from "hono/jsx";
 import { jsxRenderer } from "hono/jsx-renderer";
+import Header from "@/components/header.tsx";
 
 function Layout({ children }: PropsWithChildren) {
   return (
@@ -12,7 +13,8 @@ function Layout({ children }: PropsWithChildren) {
         <script type="module" src="client.ts" />
       </head>
       <body class="relative bg-sidebar font-sans text-foreground antialiased">
-        <div class="relative isolate flex min-h-svh flex-col overflow-clip">
+        <div class="isolate flex min-h-svh flex-col overflow-clip">
+          <Header />
           <div class="mx-auto relative flex-1 max-w-5xl gap-10 p-4 md:p-6 xl:p-12">
             {children}
           </div>
