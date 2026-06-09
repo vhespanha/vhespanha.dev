@@ -1,4 +1,4 @@
-import { H1, Lead } from "@/components/typography.tsx";
+import { H1, Lead } from "@/components/ui/typography.tsx";
 import { createPage } from "@/routes/_router.ts";
 
 export default createPage("/", (c) => {
