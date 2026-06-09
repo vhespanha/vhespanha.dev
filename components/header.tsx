@@ -1,26 +1,18 @@
-interface NavLink {
-  label: string;
-  href: string;
-}
+import usePage, { pages } from "@/hooks/use-page.ts";
+import Select from "@/components/ui/select.tsx";
 
 interface HeaderProps {
   class?: string;
 }
 
-const links: NavLink[] = [
-  { label: "Home", href: "/" },
-  { label: "About", href: "/about" },
-  { label: "Projects", href: "/projects" },
-  { label: "Contact", href: "/contact" },
-  { label: "Blog", href: "/blog" },
-];
-
-const logo: NavLink = {
+const logo = {
   label: "vhespanha.dev",
   href: "/",
 };
 
 export default function Header({ class: className }: HeaderProps) {
+  const currentPage = usePage();
+
   return (
     <header class={className}>
       <div
@@ -34,21 +26,21 @@ export default function Header({ class: className }: HeaderProps) {
           {logo.label}
         </a>
         <div class="hidden items-center gap-1 lg:flex">
-          {links.map((link) => (
+          {Object.entries(pages).map(([path, label]) => (
             <a
-              href={link.href}
-              class="inline-flex items-center btn-link"
+              href={path}
+              class={`${
+                currentPage === path ? "font-semibold" : "text-muted-foreground"
+              } inline-flex items-center btn-link`}
             >
-              {link.label}
+              {label}
             </a>
           ))}
         </div>
-        <select class="select w-45">
-          <optgroup label="Language">
-            <option>English</option>
-            <option>Portuguese</option>
-          </optgroup>
-        </select>
+        <Select
+          name="Language"
+          options={["English", "Portuguese"]}
+        />
       </div>
     </header>
   );
