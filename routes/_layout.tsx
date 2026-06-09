@@ -1,6 +1,8 @@
 import { PropsWithChildren } from "hono/jsx";
-import { jsxRenderer } from "hono/jsx-renderer";
+import { jsxRenderer, useRequestContext } from "hono/jsx-renderer";
 import Header from "@/components/header.tsx";
+import { PageContext, PagePath } from "@/hooks/use-page.ts";
+import { routePath } from "hono/route";
 
 function Layout({ children }: PropsWithChildren) {
   return (
@@ -24,4 +26,15 @@ function Layout({ children }: PropsWithChildren) {
   );
 }
 
-export default jsxRenderer(Layout, { docType: "<!DOCTYPE html>" });
+function Document({ children }: PropsWithChildren) {
+  const c = useRequestContext();
+  const path = routePath(c) as PagePath;
+
+  return (
+    <PageContext.Provider value={path}>
+      <Layout>{children}</Layout>
+    </PageContext.Provider>
+  );
+}
+
+export default jsxRenderer(Document, { docType: "<!DOCTYPE html>" });
