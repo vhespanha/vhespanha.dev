@@ -1,6 +1,6 @@
 import deno from "@deno/vite-plugin";
 import build from "@hono/vite-build/deno";
-import dev from "@hono/vite-dev-server";
+import dev, { defaultOptions } from "@hono/vite-dev-server";
 import tailwindcss from "@tailwindcss/vite";
 import { defineConfig, UserConfig } from "vite";
 
@@ -18,7 +18,10 @@ const s: UserConfig = {
   plugins: [
     deno(),
     tailwindcss(),
-    dev({ entry: "main.ts" }),
+    dev({
+      entry: "main.ts",
+      exclude: [/^\/.vite\/.*/, ...defaultOptions.exclude],
+    }),
     build({ entry: "main.ts" }),
   ],
 };
